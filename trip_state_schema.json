@@ -1,0 +1,150 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Ketamine Trip State Schema",
+  "description": "Schema for representing a ketamine subjective-experience trajectory as a sequence of phase-bound state vectors. For research, modeling, and education only. Not a dosing or use guide.",
+  "version": "0.1.0",
+  "type": "object",
+  "required": ["simulation_id", "inputs", "trajectory", "metadata"],
+  "properties": {
+    "simulation_id": {
+      "type": "string",
+      "description": "Unique identifier for this simulated trajectory."
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["person_profile", "setting_profile", "administration_profile", "simulation_goal"],
+      "properties": {
+        "person_profile": {
+          "type": "object",
+          "properties": {
+            "trait_anxiety": {"enum": ["low", "medium", "high"]},
+            "prior_experience": {"enum": ["none", "some", "extensive"]},
+            "depression_context": {"type": "boolean"},
+            "trauma_salience": {"enum": ["low", "medium", "high"]},
+            "need_for_control": {"enum": ["low", "medium", "high"]},
+            "expectancy_valence": {"enum": ["negative", "neutral", "positive"], "description": "Pre-session expectations as set by preparation/framing."}
+          },
+          "required": ["trait_anxiety", "prior_experience", "trauma_salience", "need_for_control"]
+        },
+        "setting_profile": {
+          "type": "object",
+          "properties": {
+            "clinical_support": {"type": "boolean"},
+            "therapist_present": {"type": "boolean"},
+            "music": {"type": "boolean"},
+            "eye_mask": {"type": "boolean"},
+            "preparation_quality": {"enum": ["low", "medium", "high"]},
+            "perceived_safety": {"enum": ["low", "medium", "high"]},
+            "alone": {"type": "boolean"}
+          },
+          "required": ["clinical_support", "perceived_safety"]
+        },
+        "administration_profile": {
+          "type": "object",
+          "description": "Route and dose-tier abstractions only. Schema intentionally avoids absolute dose values to discourage use-guide repurposing.",
+          "properties": {
+            "route": {"enum": ["unknown", "IV", "IM", "intranasal", "oral", "sublingual"]},
+            "dose_tier": {
+              "enum": ["subperceptual", "low", "moderate", "high", "dissociative"],
+              "description": "Qualitative tier as reported in source literature; not a dosing recommendation."
+            },
+            "infusion_profile": {"enum": ["bolus", "slow_infusion", "repeated", "single", "unknown"]}
+          },
+          "required": ["route", "dose_tier"]
+        },
+        "simulation_goal": {
+          "enum": ["clinical_education", "patient_preparation", "research_modeling", "narrative_generation"]
+        }
+      }
+    },
+    "trajectory": {
+      "type": "array",
+      "description": "Ordered sequence of phase-bound state vectors representing the trip.",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["phase", "duration_bin", "state"],
+        "properties": {
+          "phase": {
+            "enum": ["onset", "ascent", "peak", "k_hole", "return", "afterglow"],
+            "description": "Phase label. k_hole is reserved for deep dissociative states with near-total loss of agency/embodiment."
+          },
+          "duration_bin": {
+            "enum": ["early", "middle", "peak", "late", "post"],
+            "description": "Coarse temporal bin within the session, not a clock value."
+          },
+          "state": {
+            "type": "object",
+            "description": "All scalar dimensions are unit-normalized to [0, 1] except emotional_valence, which is signed [-1, 1].",
+            "properties": {
+              "dissociation": {"type": "number", "minimum": 0, "maximum": 1},
+              "body_detachment": {"type": "number", "minimum": 0, "maximum": 1},
+              "time_distortion": {"type": "number", "minimum": 0, "maximum": 1},
+              "sensory_distortion": {"type": "number", "minimum": 0, "maximum": 1},
+              "visual_imagery": {"type": "number", "minimum": 0, "maximum": 1},
+              "auditory_change": {"type": "number", "minimum": 0, "maximum": 1},
+              "cognitive_coherence": {"type": "number", "minimum": 0, "maximum": 1, "description": "Inverse of fragmentation: 1 = coherent, 0 = fully fragmented."},
+              "emotional_valence": {"type": "number", "minimum": -1, "maximum": 1},
+              "fear": {"type": "number", "minimum": 0, "maximum": 1},
+              "meaningfulness": {"type": "number", "minimum": 0, "maximum": 1},
+              "insight": {"type": "number", "minimum": 0, "maximum": 1},
+              "loss_of_agency": {"type": "number", "minimum": 0, "maximum": 1},
+              "narrative_coherence": {"type": "number", "minimum": 0, "maximum": 1}
+            },
+            "required": [
+              "dissociation",
+              "body_detachment",
+              "time_distortion",
+              "emotional_valence",
+              "fear",
+              "loss_of_agency"
+            ]
+          },
+          "narrative_features": {
+            "type": "object",
+            "properties": {
+              "identity_shift": {"type": "boolean"},
+              "death_rebirth_theme": {"type": "boolean"},
+              "cosmic_scale": {"type": "boolean"},
+              "medical_anxiety": {"type": "boolean"},
+              "childhood_memory": {"type": "boolean"},
+              "entity_or_presence": {"type": "boolean"},
+              "floating_or_falling": {"type": "boolean"},
+              "tunnel_void_space_imagery": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    },
+    "derived": {
+      "type": "object",
+      "description": "Optional summary fields computable from the trajectory.",
+      "properties": {
+        "peak_state": {"type": "object"},
+        "dominant_themes": {"type": "array", "items": {"type": "string"}},
+        "risk_flags": {
+          "type": "array",
+          "items": {"enum": ["panic", "loss_of_agency", "medical_anxiety", "incomplete_integration", "re_traumatization_risk"]}
+        },
+        "asc_11d_projection": {
+          "type": "object",
+          "description": "Optional projection onto 11D-ASC dimensions if the mapping table is loaded.",
+          "additionalProperties": {"type": "number", "minimum": 0, "maximum": 100}
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["generated_at", "model_version", "ethics_notice"],
+      "properties": {
+        "generated_at": {"type": "string", "format": "date-time"},
+        "model_version": {"type": "string"},
+        "seed": {"type": "integer"},
+        "ethics_notice": {
+          "type": "string",
+          "const": "Synthetic output for research, education, and clinical preparation only. Not medical advice. Not a dosing or use guide."
+        }
+      }
+    }
+  }
+}
