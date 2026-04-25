@@ -111,3 +111,25 @@ All four entry criteria resolved:
 | Trimmel 2024 | paraphrase_only | 24-study meta-synthesis; three-stage framework |
 
 ### Cleared to begin phase 3 extraction.
+
+---
+
+## Phase 2 expansion (2026-04-24, after phase 3 pilot revealed coverage gaps)
+
+PILOT_NOTES showed onset/return/k_hole all with zero records and only IV route represented. Targeted search for sources that fill those gaps:
+
+| Source | Status | Why added |
+|---|---|---|
+| **Breeksema 2023** (PMC10271905) | upgraded TODO → `permitted` (CC-BY-4.0) | n=17 IPA on **oral esketamine**, **explicit return-phase coverage** ("Lifting the blanket" 1–4 day post-session + "Feeling hungover and fatigued"). Fills both gaps simultaneously. |
+| **Breeksema 2022** (Frontiers, oral esketamine) | new `permitted` | Same author group, complementary acute-phase focus, control/context/care themes. |
+| **Klysing 2025** (PMC11907890, BMC Nursing) | new `permitted` (CC-BY-4.0) | n=20 **intranasal esketamine** — fills the route gap; person-centred-care framework. |
+| **Di Nicola 2025 / REAL-ESKperience** | new `permitted` (CC-BY-4.0) but low priority | n=236 intranasal esketamine, **no verbatim quotes** (used AI thematic analysis). Useful for population-level prevalence stats, not for trajectory extraction. |
+| **Muetzelfeldt 2008** "Journey through the K-hole" | new `cite_only` (paywalled Elsevier) | n=90 recreational users with hair-sample-verified drug use. **K-hole-depth phenomenology** that fills the deepest dissociation gap — by paraphrase only. |
+
+Final corpus is now **11 `permitted` + 1 `paraphrase_only` + 1 `cite_only` (k-hole)** sources, no Erowid. Onset/return/k_hole gaps are addressable in phase 3 continuation.
+
+Recommended phase 3 next-source order:
+1. **Breeksema 2023** — biggest gap-filler (oral route + return phase + IPA verbatim).
+2. **Klysing 2025** — intranasal route.
+3. **Trimmel 2024** (paraphrase_only) — to populate transition phases via meta-synthesis paraphrase.
+4. **Muetzelfeldt 2008** — paraphrase only, k-hole content.

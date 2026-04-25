@@ -11,7 +11,7 @@ Research prototype: a probabilistic simulator of ketamine subjective-experience 
 | Phase | State |
 |---|---|
 | 1 — Scaffolding | done |
-| 2 — Source survey | done; corpus of 8 `permitted` + 1 `paraphrase_only`, no Erowid |
+| 2 — Source survey | done; corpus of 11 `permitted` + 1 `paraphrase_only` + 1 `cite_only` (k-hole), no Erowid |
 | 3 — Extraction | 57 verified-verbatim records (Mollaahmetoglu 2021: 30; Kheirkhah 2025: 27) |
 | 4 — Simulator | not started |
 | 5 — Evaluation | not started |
