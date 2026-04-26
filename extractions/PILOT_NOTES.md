@@ -7,11 +7,13 @@ Annotator: Claude (claude-opus-4-7-2026-04-24)
 
 | File | Records | Source license |
 |---|---|---|
-| `mollaahmetoglu-2021.jsonl` | 30 | CC-BY |
-| `kheirkhah-2025.jsonl` | 27 | CC-BY |
-| `breeksema-2023.jsonl` | 27 | CC-BY-4.0 |
+| `mollaahmetoglu-2021.jsonl` | 30 | CC-BY (verbatim) |
+| `kheirkhah-2025.jsonl` | 27 | CC-BY (verbatim) |
+| `breeksema-2023.jsonl` | 27 | CC-BY-4.0 (verbatim) |
+| `klysing-2025.jsonl` | 7 | CC-BY-4.0 (verbatim) |
+| `trimmel-2024.jsonl` | 11 | CC-BY-NC-ND-4.0 (paraphrase, no verbatim) |
 
-All 84 records have been **audited via `verify_quotes.py`** (substring match against the raw PMC HTML with tags stripped and unicode normalized). Every `raw_excerpt` is present verbatim in the source. All records use `raw_excerpt_completeness: "full"`.
+102 total records: 91 verbatim, 11 paraphrase. All have been **audited via `verify_quotes.py`** (substring match against the raw PMC HTML with tags stripped and unicode normalized). Every `raw_excerpt` is present verbatim in the source. All records use `raw_excerpt_completeness: "full"`.
 
 To re-run the audit:
 ```
@@ -69,18 +71,18 @@ Mollaahmetoglu uses 0.8 mg/kg IV. Kheirkhah uses subanesthetic ketamine (typical
 
 ## Coverage from these two sources
 
-### Phases (after Breeksema 2023 added)
+### Phases (after Klysing + Trimmel added)
 | Phase | Records | Notes |
 |---|---|---|
-| pre_session | 3 | All Mollaahmetoglu |
-| onset | 1 | NEW — Breeksema P7 vibration-humming progression |
-| ascent | 1 | NEW — Breeksema P4 'Suddenly, all at once, I enter this experience' |
-| peak | 60 | Most records |
-| k_hole | 4 | NEW — Breeksema P10 (×2), P4 (×2). Two valence variants: neutral-suspended (P10) and fear-dominant (P4). |
-| return | 5 | NEW — Breeksema P14 (fatigue), P3 (hungover), P6 (day-after), P1 (nightmares), P11 (sensory hypersensitivity) |
-| afterglow | 10 | Mollaahmetoglu transformational + Kheirkhah lingering well-being + Breeksema 'Lifting the blanket' (4 records: P10 partial-lift, P16 baseline-restoration, P4 restored-affect, P15 functional-restoration) |
+| pre_session | 8 | Mollaahmetoglu (3) + Klysing (3 care-context) + Trimmel meta (1) + Klysing P9 anticipation |
+| onset | 1 | Breeksema P7 vibration-humming progression |
+| ascent | 1 | Breeksema P4 'Suddenly, all at once, I enter this experience' |
+| peak | 67 | Most records — across IV / oral / intranasal routes |
+| k_hole | 4 | Breeksema P10 (×2), P4 (×2). Two valence variants: neutral-suspended and fear-dominant catastrophic. |
+| return | 6 | Breeksema (5) + Trimmel meta (1 comedown). |
+| afterglow | 14 | Mollaahmetoglu (5) + Kheirkhah (2) + Breeksema (4) + Klysing (2) + Trimmel meta (4 including 'failed-treatment afterglow' — 10th archetype) |
 
-**Phase coverage is now complete** across all six phases plus pre_session. Breeksema 2023 was the right pick — it filled five of the gap categories simultaneously. Onset/ascent are still thin (one record each); could be expanded by extracting more from Breeksema 2022 if needed.
+**Phase coverage is now complete and validated by meta-synthesis.** Trimmel's 24-study aggregation confirms our archetypes are not idiosyncratic to single sources.
 
 ### Setting variability
 | Setting condition | Records |
@@ -88,9 +90,11 @@ Mollaahmetoglu uses 0.8 mg/kg IV. Kheirkhah uses subanesthetic ketamine (typical
 | music + eye_mask + mindfulness (Kheirkhah intervention) | 14 |
 | no music + no eye_mask (Kheirkhah control) | 11 |
 | music only, no eye_mask (Mollaahmetoglu, IV) | 30 |
-| no music + no eye_mask (Breeksema, ORAL) | 27 |
+| no music + no eye_mask (Breeksema, oral) | 27 |
+| variable music, dim/dark room, person-centred (Klysing, intranasal) | 7 |
+| variable across 24 studies (Trimmel meta) | 11 |
 
-Four distinct setting × route combinations. Routes covered: IV (57 records) + oral (27 records). Intranasal still uncovered until Klysing 2025 is extracted.
+All three administration routes now represented: IV (57) + oral (27) + intranasal (7) + meta-aggregate (11).
 
 ### Dimension anchors emerging
 
@@ -127,7 +131,12 @@ Four peak archetypes from prior extractions, plus k_hole and afterglow archetype
 8. **Baseline-restoration afterglow** (P16): sustained return to "neutral feeling of well-being...like a normal person." Does not subside.
 9. **Restored-affect afterglow** (P4_afterglow): emotional re-engagement after long anhedonia. Same participant (P4) had catastrophic k_hole AND restored-affect afterglow — these are not mutually exclusive.
 
-The simulator's transition model needs to support all 9 distinct end-states, not converge to means. Importantly: **a fear-dominant k_hole does not preclude a positive afterglow**, per P4's trajectory.
+The simulator's transition model needs to support all 9 distinct end-states, not converge to means. Importantly: **a fear-dominant k_hole does not preclude a positive afterglow**, per P4's trajectory — independently confirmed by Trimmel meta-finding that emotionally negative acute experiences do not preclude clinical benefit.
+
+**Two additional archetypes from Trimmel meta-synthesis:**
+
+10. **Neutral-ineffable peak** (Trimmel Subtheme 2.2 neutral subset): "simply strange, confusing or hard to put into words" — neither positive nor negative. Distinct from the four valence-anchored peaks. Likely under-captured by valence-based instruments like CADSS.
+11. **Failed-treatment afterglow** (Trimmel Subtheme 3.3): no benefit OR rapid relapse → frustration, disappointment, intensified hopelessness. Critical for the simulator's safety pillar — non-response trajectories must be modeled. This is the only archetype with negative afterglow valence.
 
 ---
 

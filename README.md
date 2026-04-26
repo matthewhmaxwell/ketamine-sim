@@ -12,7 +12,7 @@ Research prototype: a probabilistic simulator of ketamine subjective-experience 
 |---|---|
 | 1 — Scaffolding | done |
 | 2 — Source survey | done; corpus of 11 `permitted` + 1 `paraphrase_only` + 1 `cite_only` (k-hole), no Erowid |
-| 3 — Extraction | 84 verified-verbatim records (Mollaahmetoglu 2021: 30; Kheirkhah 2025: 27; Breeksema 2023: 27) — full coverage across onset/ascent/peak/k_hole/return/afterglow |
+| 3 — Extraction | 102 records across 5 sources (91 verbatim + 11 paraphrase). Routes: IV / oral / intranasal. Phases: pre_session / onset / ascent / peak / k_hole / return / afterglow. 11 distinct end-state archetypes including non-response. |
 | 4 — Simulator | not started |
 | 5 — Evaluation | not started |
 
