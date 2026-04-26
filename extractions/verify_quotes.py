@@ -29,6 +29,7 @@ from pathlib import Path
 SOURCES = [
     ("mollaahmetoglu-2021", "/tmp/mollaahmetoglu-2021.html"),
     ("kheirkhah-2025",      "/tmp/kheirkhah-2025.html"),
+    ("breeksema-2023",      "/tmp/breeksema-2023.html"),
 ]
 
 EXTRACTIONS_DIR = Path(__file__).resolve().parent

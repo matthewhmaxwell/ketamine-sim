@@ -9,8 +9,9 @@ Annotator: Claude (claude-opus-4-7-2026-04-24)
 |---|---|---|
 | `mollaahmetoglu-2021.jsonl` | 30 | CC-BY |
 | `kheirkhah-2025.jsonl` | 27 | CC-BY |
+| `breeksema-2023.jsonl` | 27 | CC-BY-4.0 |
 
-All 57 records have been **audited via `verify_quotes.py`** (substring match against the raw PMC HTML with tags stripped and unicode normalized). Every `raw_excerpt` is present verbatim in the source. All records use `raw_excerpt_completeness: "full"`.
+All 84 records have been **audited via `verify_quotes.py`** (substring match against the raw PMC HTML with tags stripped and unicode normalized). Every `raw_excerpt` is present verbatim in the source. All records use `raw_excerpt_completeness: "full"`.
 
 To re-run the audit:
 ```
@@ -68,27 +69,28 @@ Mollaahmetoglu uses 0.8 mg/kg IV. Kheirkhah uses subanesthetic ketamine (typical
 
 ## Coverage from these two sources
 
-### Phases
+### Phases (after Breeksema 2023 added)
 | Phase | Records | Notes |
 |---|---|---|
-| pre_session | 3 | All Mollaahmetoglu — Kheirkhah doesn't separate pre-session content |
-| onset | 0 | Gap in both sources |
-| ascent | 0 | Gap in both sources |
-| peak | 47 | Most records |
-| k_hole | 0 | After verification, no record cleanly meets the k_hole threshold (deep dissociation + total agency loss + low narrative coherence). Pilot v1 incorrectly marked one P05 record k_hole; downgraded. |
-| return | 0 | Gap |
-| afterglow | 6 | Mollaahmetoglu transformational + Kheirkhah lingering well-being |
+| pre_session | 3 | All Mollaahmetoglu |
+| onset | 1 | NEW — Breeksema P7 vibration-humming progression |
+| ascent | 1 | NEW — Breeksema P4 'Suddenly, all at once, I enter this experience' |
+| peak | 60 | Most records |
+| k_hole | 4 | NEW — Breeksema P10 (×2), P4 (×2). Two valence variants: neutral-suspended (P10) and fear-dominant (P4). |
+| return | 5 | NEW — Breeksema P14 (fatigue), P3 (hungover), P6 (day-after), P1 (nightmares), P11 (sensory hypersensitivity) |
+| afterglow | 10 | Mollaahmetoglu transformational + Kheirkhah lingering well-being + Breeksema 'Lifting the blanket' (4 records: P10 partial-lift, P16 baseline-restoration, P4 restored-affect, P15 functional-restoration) |
 
-**Onset / ascent / return are not represented.** This is a structural gap in qualitative literature: patients tend to describe the peak content, not the transitions. Will need to either find onset/return-focused sources in phase 3 continuation, or accept that the simulator's transition model has to interpolate these phases.
+**Phase coverage is now complete** across all six phases plus pre_session. Breeksema 2023 was the right pick — it filled five of the gap categories simultaneously. Onset/ascent are still thin (one record each); could be expanded by extracting more from Breeksema 2022 if needed.
 
 ### Setting variability
 | Setting condition | Records |
 |---|---|
 | music + eye_mask + mindfulness (Kheirkhah intervention) | 14 |
 | no music + no eye_mask (Kheirkhah control) | 11 |
-| music only, no eye_mask (Mollaahmetoglu) | 28 |
+| music only, no eye_mask (Mollaahmetoglu, IV) | 30 |
+| no music + no eye_mask (Breeksema, ORAL) | 27 |
 
-Three distinct setting profiles represented. Good for setting_profile sensitivity in the simulator.
+Four distinct setting × route combinations. Routes covered: IV (57 records) + oral (27 records). Intranasal still uncovered until Klysing 2025 is extracted.
 
 ### Dimension anchors emerging
 
@@ -108,14 +110,24 @@ These anchors are the calibration set for any future psychometric mapping.
 
 ### Archetypes confirmed
 
-Three peak archetypes from pilot v1 are reinforced and a fourth emerges:
+Four peak archetypes from prior extractions, plus k_hole and afterglow archetypes from Breeksema:
 
-1. **Mystical-positive** (P07, P09 spiritual; Kheirkhah P9, P15, P25, P33): high meaningfulness, low fear, identity_shift=true, often cosmic_scale.
-2. **Visual-only** (P07_peak_02, P04_peak_03; Kheirkhah P1, P2): high sensory/visual, low dissociation, low meaningfulness.
-3. **Fear-dominant** (P03, P04_peak_04; Kheirkhah P11): high fear, often medical_anxiety, negative valence.
-4. **Calm-embodied (NEW)** (Mollaahmetoglu P04_peak_01; Kheirkhah P9, P26_peak_02, P30): low fear, positive valence, **preserved** body awareness, mild dissociation. This is the "gentle peak" that mindfulness-anchored or experienced subjects produce.
+**Peak archetypes:**
+1. **Mystical-positive** (Mollaahmetoglu P07, P09 spiritual; Kheirkhah P9, P15, P25, P33; Breeksema P2, P7_peak_03, P8, P17_peak_02): high meaningfulness, low fear, identity_shift=true, often cosmic_scale.
+2. **Visual-only** (Mollaahmetoglu P07_peak_02, P04_peak_03; Kheirkhah P1, P2; Breeksema P15_peak_01): high sensory/visual, low dissociation, low meaningfulness.
+3. **Fear-dominant** (Mollaahmetoglu P03, P04_peak_04; Kheirkhah P11; Breeksema P3): high fear, often medical_anxiety, negative valence.
+4. **Calm-embodied** (Mollaahmetoglu P04_peak_01; Kheirkhah P9, P26_peak_02, P30): low fear, positive valence, **preserved** body awareness, mild dissociation. The "gentle peak."
 
-The simulator's transition model needs to support all four as distinct outcomes, not converge to a single mean.
+**K_hole archetypes (NEW from Breeksema):**
+5. **Neutral-suspended k_hole** (P10): all dissociative dimensions saturated, valence neutral, no acute fear — feels like timeless suspension rather than terror.
+6. **Fear-dominant k_hole** (P4): same dimensional saturation but with fear=1.0, valence strongly negative, death_rebirth_theme=true ("I think I'm dead, can't return to my body, time is endless"). The catastrophic-trip archetype.
+
+**Afterglow archetypes (NEW from Breeksema):**
+7. **Partial-lift afterglow** (P10_afterglow): "blanket lifted by a corner," ~36-hour mood improvement, then subsides.
+8. **Baseline-restoration afterglow** (P16): sustained return to "neutral feeling of well-being...like a normal person." Does not subside.
+9. **Restored-affect afterglow** (P4_afterglow): emotional re-engagement after long anhedonia. Same participant (P4) had catastrophic k_hole AND restored-affect afterglow — these are not mutually exclusive.
+
+The simulator's transition model needs to support all 9 distinct end-states, not converge to means. Importantly: **a fear-dominant k_hole does not preclude a positive afterglow**, per P4's trajectory.
 
 ---
 
